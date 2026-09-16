@@ -23,10 +23,11 @@ def average_temp(devices):
     return avg_temp
 
 # return the whole dictionary of the hottest device
-def hottest(devices):
+@app.get("/devices/hottest")
+async def hottest():
     hottest_temp = 0.0
     hottest_device = None
-    for device in devices:
+    for device in readings:
         if device['temp'] > hottest_temp:
             hottest_temp = device['temp']
             hottest_device = device
