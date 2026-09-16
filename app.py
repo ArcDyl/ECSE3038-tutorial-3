@@ -15,11 +15,12 @@ async def get_devices():
     return readings
 
 # return the average temperature
-def average_temp(devices):
+@app.get("/devices/average")
+async def average_temp():
     sum_temp = 0
-    for device in devices:
+    for device in readings:
         sum_temp+= device['temp']
-        avg_temp = sum_temp / len(devices)
+        avg_temp = sum_temp / len(readings)
     return avg_temp
 
 @app.get("/devices/{name}")
