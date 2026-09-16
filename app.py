@@ -22,6 +22,13 @@ def average_temp(devices):
         avg_temp = sum_temp / len(devices)
     return avg_temp
 
+@app.get("/devices/{name}")
+async def get_device(name):
+    for device in readings:
+        if device["name"] == name:
+            return device
+    raise HTTPException(status_code=404, detail="Device not found")
+
 @app.get("/devices/online")
 async def online():
     devices = []
