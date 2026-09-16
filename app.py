@@ -22,6 +22,14 @@ def average_temp(devices):
         avg_temp = sum_temp / len(devices)
     return avg_temp
 
+@app.get("/devices/online")
+async def online():
+    devices = []
+    for device in readings:
+        if device["online"] == True:
+            devices.append(device)
+    return devices
+
 # return the whole dictionary of the hottest device
 @app.get("/devices/hottest")
 async def hottest():
