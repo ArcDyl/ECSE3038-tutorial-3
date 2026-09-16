@@ -14,6 +14,11 @@ readings = [
 async def get_devices():
     return readings
 
+@app.post("/devices")
+async def add_device(device: dict):
+    readings.append(device)
+    return device
+
 # return the average temperature
 @app.get("/devices/average")
 async def average_temp():
