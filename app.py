@@ -10,6 +10,10 @@ readings = [
     {"name": "patio",      "room": "outside", "temp": 29.8, "online": True},
 ]
 
+@app.get("/devices")
+async def get_devices():
+    return readings
+
 # return the average temperature
 def average_temp(devices):
     sum_temp = 0
