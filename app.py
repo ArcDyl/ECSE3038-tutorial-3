@@ -19,6 +19,16 @@ async def add_device(device: dict):
     readings.append(device)
     return device
 
+@app.get("/rooms/{room}/devices")
+async def get_devices_by_room(room):
+    devices = []
+    for device in readings:
+        if device["room"] == room:
+            devices.append(device)
+    if devices == []:
+        raise HTTPException(status_code=404, detail="Room not found")
+    return devices
+
 # return the average temperature
 @app.get("/devices/average")
 async def average_temp():
